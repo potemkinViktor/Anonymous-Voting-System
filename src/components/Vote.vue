@@ -69,6 +69,7 @@ const TREE_LEVELS = 20;
 @Component
 export default class Vote extends Vue {
   public option = 0;
+  public locationHash = "1";
 
   async sendToBlockchain() {
     if (!this.option) {

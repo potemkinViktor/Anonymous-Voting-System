@@ -23,6 +23,7 @@ import * as ethers from "ethers";
 @Component
 export default class Vote extends Vue {
   public options = [0, 0, 0, 0];
+  public locationHash = "1";
 
   mounted() {
     this.init();

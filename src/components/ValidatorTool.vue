@@ -27,6 +27,7 @@ import * as ethers from "ethers";
 export default class ValidatorTool extends Vue {
   public commitment = "";
   public uniqueHash = "";
+  public locationHash = "1";
 
   mounted() {
     let html5QrcodeScanner = new Html5QrcodeScanner(

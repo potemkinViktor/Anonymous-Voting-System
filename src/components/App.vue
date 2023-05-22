@@ -13,7 +13,7 @@ import Results from "./Results.vue";
 
 @Component
 export default class App extends Vue {
-  public locationHash = "";
+  public locationHash = "1";
 
   created() {
     this.locationHash = window.location.hash;

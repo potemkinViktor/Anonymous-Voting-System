@@ -33,6 +33,7 @@ import copyToClipboard from "copy-to-clipboard";
 export default class VoterRegistration extends Vue {
   public commitment: any = "";
   public qrcodeDataUrl: string = "";
+  public locationHash = "1";
 
   mounted() {
     this.init();
