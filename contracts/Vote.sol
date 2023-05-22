@@ -3,12 +3,12 @@ pragma solidity ^0.8.17;
 
 import "zk-merkle-tree/contracts/ZKTree.sol";
 
-contract ZKTreeVote is ZKTree {
-    address public owner;
-    mapping(address => bool) public validators;
-    mapping(uint256 => bool) uniqueHashes;
-    uint numOptions;
-    mapping(uint => uint) optionCounter;
+contract Vote is ZKTree {
+    address internal owner;
+    mapping(address => bool) internal validators;
+    mapping(uint256 => bool) internal uniqueHashes;
+    uint internal numOptions;
+    mapping(uint => uint) internal optionCounter;
 
     constructor(
         uint32 _levels,
@@ -58,7 +58,31 @@ contract ZKTreeVote is ZKTree {
         optionCounter[_option] = optionCounter[_option] + 1;
     }
 
-    function getOptionCounter(uint _option) external view returns (uint) {
+    function getOptionCounter(uint _option) public view returns (uint) {
         return optionCounter[_option];
+    }
+
+    function getOwner() public view returns(address) {
+        return owner;
+    }
+
+    function getValidator(address key) public view returns(bool) {
+        return validators[key];
+    }
+
+    function getUniqueHashes(uint256 key) public view returns(bool) {
+        return uniqueHashes[key];
+    }
+
+    function getNumOptions() public view returns(uint) {
+        return numOptions;
+    }
+
+    function getWinnerOption() public view returns(uint winner) {
+        for (uint256 i = 1; i <= getNumOptions(); i++) {
+            if (getOptionCounter(i) > getOptionCounter(i - 1)) {
+                winner = i;
+            }
+        }
     }
 }
